@@ -1,9 +1,5 @@
 Habit = new Meteor.Collection('Habit')
 
-/*if (Habit.find().count() === 1) {
-    var id = Habit.findOne()._id
-    Habit.remove({_id:id})
-}*/
 Habit.type = {
     name: Match.Where(function(x) {
         check(x, String)
@@ -13,15 +9,22 @@ Habit.type = {
         check(x, String)
         return x.length < 1000
     })),
-    createAt: Number,
+    createAt: Date,
     userId: String,
     isPrivate: Boolean
 }
-
+if (Meteor.isClient) {
+    //获取朋友的习惯
+    Habit.getFriendsHabit = function() {
+        var friends = Relation.getFriends()
+        var friendIds = Meteor.users.getUserIds(friends, "to")
+        return Habit.find({userId: {$in: friendIds}})
+    }
+    Habit.getRecently = function() {
+        return Habit.find({userId: {$ne: Meteor.userId()}}, {sort: {createAt: -1}})
+    }
+}
 var HabitController = RouteController.extend({
-    waitOn: function() {
-        return Meteor.subscribe('Habit.mine')
-    },
     onBeforeAction: function() {
         if(this.ready()) {
             if(Habit.find().count() === 0) {
@@ -111,7 +114,7 @@ Router.route('habitRecently', {
     "path": "/habit/recently",
     data: function() {
         return {
-           habits: Habit.find({userId: {$ne: Meteor.userId()}}, {sort: {createAt: -1}}).map(function(doc) {
+           habits: Habit.getRecently().map(function(doc) {
                 var user = Meteor.users.findOne({_id: doc.userId})
                 if (user) {
                     doc.username = user.username
@@ -126,5 +129,11 @@ Router.route('habitRecently', {
             this.render()
         }
     }
+})
 
+Router.route('habitFriend', {
+    "path": "/habit/friend",
+    data: function() {
+        return Habit.getFriendsHabit()
+    }
 })

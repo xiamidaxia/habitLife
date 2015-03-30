@@ -9,3 +9,7 @@ Template.registerHelper("moment", function(val, formatStr) {
     return moment(val).format(formatStr)
 
 })
+
+Template.registerHelper("session", function(name) {
+    return Session.get(name)
+})

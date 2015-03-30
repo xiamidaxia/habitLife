@@ -10,6 +10,24 @@ Template.appMenu.helpers({
     username: function() {
         var user = Meteor.user()
         return user && user.username
+    },
+    messageCount: function() {
+        return Message.find().count()
+    },
+    habitCount: function() {
+        return Habit.find({userId: Meteor.userId()}).count()
+    },
+    habitFriendCount: function() {
+        return Habit.getFriendsHabit().count()
+    },
+    habitRecentlyCount: function() {
+        return Habit.getRecently().count()
+    },
+    friendCount: function() {
+        return Relation.getFriends().count()
+    },
+    tagCount: function() {
+        return Tag.find().count()
     }
 })
 

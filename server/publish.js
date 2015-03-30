@@ -11,10 +11,6 @@
  });*/
 
 Meteor.publish('Tag.mine', function() {
-    /*    var self = this
-     setTimeout(function() {
-     self.ready()
-     }, 5000)*/
     if(this.userId)
         return Tag.find({userId: this.userId})
     else
@@ -28,10 +24,26 @@ Meteor.publish('Habit.mine', function() {
         this.ready()
 })
 
-Meteor.publish('Habit.user', function(userId) {
-    return Habit.find({userId: userId})
+Meteor.publish('Message.mine', function() {
+    if (this.userId)
+        return Message.find({to: this.userId})
+    else
+        this.ready()
 })
+Meteor.publish('Habit.friend.mine', function() {
+    var friends = Relation.find({from: this.userId})
+    var userIds = Meteor.users.getUserIds(friends, "to")
+    var friendHabit = Habit.find({userId: {$in: userIds}, isPrivate: {$ne: true}})
+    if (this.userId)
+        return [
+            friends,
+            Meteor.users.getUserCursor(friends, "to"),
+            friendHabit
+        ]
+    else
+        this.ready()
 
+})
 //最新添加的用户习惯
 Meteor.publish('Habit.recently', function() {
     var habitCursor = Habit.find(
@@ -39,15 +51,8 @@ Meteor.publish('Habit.recently', function() {
         {userId: {$ne: this.userId}, isPrivate: {$ne: true}},
         {sort: {"createAt": -1}, limit: 10, fields: {isPrivate: 0}}
     )
-    var userIds = []
-    var userCursor
-    habitCursor.forEach(function(doc) {
-        //doc.username = Meteor.users.findOne({_id: doc.userId}).username
-        userIds.push(doc.userId)
-    })
-    userIds = _.union(userIds)
-    userCursor = Meteor.users.find({_id: {$in: userIds}}, {fields: {username: 1}})
     return [
-        habitCursor, userCursor
+        habitCursor, Meteor.users.getUserCursor(habitCursor, "userId")
     ]
 })
+

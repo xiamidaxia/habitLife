@@ -1,0 +1,6 @@
+<template name="relationFriend">
+    <h3>我的好友：</h3>
+    {{#each this}}
+        <li><a href="{{pathFor "userDetail"}}">{{username}}</a></li>
+    {{/each}}
+</template>

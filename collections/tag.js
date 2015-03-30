@@ -8,9 +8,6 @@ Tag.type = {
 
 Router.route('tagIndex', {
     "path": "/tag",
-    waitOn: function() {
-        return Meteor.subscribe('Tag.mine')
-    },
     data: function() {
         return {
             tags: Tag.find()

@@ -1,1 +1,8 @@
-<template name="messageIndex"></template>
+<template name="messageIndex">
+    {{#each this}}
+        <li>{{message}}
+            <span> | </span>
+            <a action="agreeFriend">同意</a>
+        </li>
+    {{/each}}
+</template>

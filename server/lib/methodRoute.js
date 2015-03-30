@@ -1,3 +1,9 @@
+/**
+ * 注：通过add添加的方法, 会在方法调用的作用域里添加`this.name`, 即为MethodRoute创建的名字，
+ *  且必须和集合名字一致，否则容易出问题
+ * @param name
+ * @constructor
+ */
 MethodRoute = function(name) {
     this._name = name
     this._hooks = []
@@ -12,6 +18,18 @@ MethodRoute.prototype = {
     add: function(methods) {
         this._methods =  methods
     },
+    /**
+     * @param {Function | Ignore}
+     * @param {Object=}
+     * @example
+     *      m.hook("isLogin", {except: ["name1"]})
+     *      //or
+     *      m.hook(function(userId){
+     *          if (!this.userId) {
+     *              throw new Meteor.Error("unlogin")
+     *          }
+     *      }, {only: ["name1"]})
+     */
     hook: function(fn, opts) {
         this._hooks.push([fn, opts])
     },
@@ -56,6 +74,8 @@ MethodRoute.prototype = {
             var keyname = self._name + "." + key
             newMethods[keyname] = function() {
                 var ret
+                //添加name
+                this.name = self._name
                 if (Meteor.isDebug) {
                     console.log(keyname + ": " + EJSON.stringify(arguments))
                 }

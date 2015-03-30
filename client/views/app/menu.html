@@ -23,16 +23,47 @@
 
         <div class="list-todos">
 <!--            <a class="js-new-list link-list-new"><span class="lib-icon-plus"></span>添加任务</a>-->
-            <a href="{{pathFor 'habitIndex'}}" class="list-todo">习惯</a>
-            <a href="{{pathFor 'habitRecently'}}" class="list-todo">最近的习惯</a>
-            <a href="{{pathFor 'friends'}}" class="list-todo">好友</a>
-            <a href="{{pathFor 'tagIndex'}}" class="list-todo">标签</a>
-            <a href="{{pathFor 'messageIndex'}}" class="list-todo">消息</a>
+            <a href="{{pathFor 'messageIndex'}}" class="list-todo">
+                消息
+                {{#if messageCount}}
+                <span class="count-list">{{messageCount}}</span>
+                {{/if}}
+            </a>
+            <a href="{{pathFor 'habitIndex'}}" class="list-todo">
+                习惯
+                {{#if habitCount}}
+                    <span class="count-list">{{habitCount}}</span>
+                {{/if}}
+            </a>
+            <a href="{{pathFor 'habitRecently'}}" class="list-todo">
+                看看大家的习惯
+                {{#if habitRecentlyCount}}
+                    <span class="count-list">{{habitRecentlyCount}}</span>
+                {{/if}}
+            </a>
+            <a href="{{pathFor 'relationFriend'}}" class="list-todo">
+                好友
+                {{#if friendCount}}
+                    <span class="count-list">{{friendCount}}</span>
+                {{/if}}
+            </a>
+            <a href="{{pathFor 'habitFriend'}}" class="list-todo">
+                好友的习惯
+                {{#if habitFriendCount}}
+                    <span class="count-list">{{habitFriendCount}}</span>
+                {{/if}}
+            </a>
+            <a href="{{pathFor 'tagIndex'}}" class="list-todo">
+                标签
+                <span class="lib-icon-lock"></span>
+                {{#if tagCount}}
+                    <span class="count-list">{{tagCount}}</span>
+                {{/if}}
+            </a>
 
             {{#each lists}}
                 <a href="{{pathFor 'listsShow'}}" class="list-todo {{activeListClass}}" title="{{name}}">
                     {{#if userId}}
-                        <span class="lib-icon-lock"></span>
                     {{/if}}
                     {{#if incompleteCount}}
                         <span class="count-list">{{incompleteCount}}</span>

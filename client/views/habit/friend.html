@@ -1,0 +1,11 @@
+<template name="habitFriend">
+    <h3>朋友的习惯：</h3>
+    <ul>
+        {{#each this}}
+            <li n="item">
+                <a href="{{pathFor 'habitItem'}}">{{name}}</a>
+                <span>{{fromNow createAt}}</span>
+            </li>
+        {{/each}}
+    </ul>
+</template>

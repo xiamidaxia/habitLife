@@ -1,4 +1,4 @@
-Article = new Meteor.Collection('article')
+Article = new Meteor.Collection('Article')
 
 Article.enumType = {
     'diary': 0
