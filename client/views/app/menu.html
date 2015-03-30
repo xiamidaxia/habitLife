@@ -1,0 +1,48 @@
+<template name="appMenu">
+    <section id="appMenu">
+        {{#if isLogin}}
+            <div class="lib-btns-vertical">
+                <a href="#" class="lib-btn-secondary">
+                    {{#if userMenuOpened}}
+                        <span class="lib-icon-arrow-up" action="closeUserMenu"></span>
+                    {{else}}
+                        <span class="lib-icon-arrow-down" action="openUserMenu"></span>
+                    {{/if}}
+                    {{username}}
+                </a>
+                {{#if userMenuOpened}}
+                    <a class="lib-btn-secondary" action="logout">退出</a>
+                {{/if}}
+            </div>
+        {{else}}
+            <div class="lib-btns">
+                <a href="{{pathFor 'userLogin'}}" class="lib-btn-secondary">登录</a>
+                <a href="{{pathFor 'userRegister'}}" class="lib-btn-secondary">注册</a>
+            </div>
+        {{/if}}
+
+        <div class="list-todos">
+<!--            <a class="js-new-list link-list-new"><span class="lib-icon-plus"></span>添加任务</a>-->
+            <a href="{{pathFor 'habitIndex'}}" class="list-todo">习惯</a>
+            <a href="{{pathFor 'habitRecently'}}" class="list-todo">最近的习惯</a>
+            <a href="{{pathFor 'friends'}}" class="list-todo">好友</a>
+            <a href="{{pathFor 'tagIndex'}}" class="list-todo">标签</a>
+            <a href="{{pathFor 'messageIndex'}}" class="list-todo">消息</a>
+
+            {{#each lists}}
+                <a href="{{pathFor 'listsShow'}}" class="list-todo {{activeListClass}}" title="{{name}}">
+                    {{#if userId}}
+                        <span class="lib-icon-lock"></span>
+                    {{/if}}
+                    {{#if incompleteCount}}
+                        <span class="count-list">{{incompleteCount}}</span>
+                    {{/if}}
+                    {{name}}
+                </a>
+            {{/each}}
+
+        </div>
+    </section>
+
+
+</template>

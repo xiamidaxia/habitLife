@@ -1,0 +1,25 @@
+<template name="appBody">
+    <div id="appBody" {{menuOpen}} class="{{cordova}}">
+        {{> appMenu}}
+
+        {{#unless connected}}
+            <div id="appBodyNotify" class="notifications">
+                <div class="notification">
+                    <span class="icon-sync"></span>
+                    <div class="meta">
+                        <div class="title-notification">正在尝试连接服务器...</div>
+                        <div class="description">哎哟，服务器貌似开小差了，好蛋疼啊~~</div>
+                    </div>
+                </div>
+            </div>
+        {{/unless}}
+
+        <div class="content-overlay"></div>
+
+        <div id="appBodyContainer">
+            {{#each thisArray}}
+                {{> yield}}
+            {{/each}}
+        </div>
+    </div>
+</template>

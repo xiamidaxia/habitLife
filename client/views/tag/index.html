@@ -1,0 +1,14 @@
+<template name="tagIndex">
+    <div>
+        <a action="add" t="list">添加</a>
+    </div>
+    <ul n="list">
+    {{#each tags}}
+        <li data-id="{{_id}}">
+            <span action="changed" data-old-content="{{content}}" n="content">{{content}}</span>
+            <a action="editable" t="content">修改</a>
+            <a action="delete">删除</a>
+        </li>
+    {{/each}}
+    </ul>
+</template>

@@ -1,0 +1,22 @@
+<template name="habitIndex">
+    <p>{{currentUser.username}}的习惯列表</p>
+    <p><a href="{{pathFor "habitCreate" }}">创建</a></p>
+    <ul>
+        {{#each habits}}
+        <li n="item">
+            <a href="{{pathFor 'habitItem'}}">{{name}}</a>
+            <span> | </span>
+            <a action="delete" t="item">删除</a>
+            <span> | </span>
+            <a href="{{pathFor 'habitEdit'}}">编辑</a>
+            <span> | </span>
+            <span>{{fromNow createAt}}</span>
+            {{#if isPrivate}}
+                <span style="color:red">锁</span>
+            {{/if}}
+        </li>
+        {{/each}}
+    </ul>
+
+
+</template>

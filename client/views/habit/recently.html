@@ -1,0 +1,5 @@
+<template name="habitRecently">
+    {{#each habits}}
+        <li>{{name}}  <a>{{username}}</a> | <span>{{moment createAt "YYYY-MM-DD HH:MM:SS"}}</span></li>
+    {{/each}}
+</template>

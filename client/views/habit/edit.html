@@ -1,0 +1,24 @@
+<template name="habitEdit">
+    <h3>编辑习惯</h3>
+    <form n="form">
+        <div style="margin-top:10px;">
+            <input type="text" name="name" style="width:300px;" value="{{name}}" placeholder="输入习惯名称"></div>
+        <div style="margin-top:10px;">
+            <textarea name="content" style="width:300px;height:100px" placeholder="习惯内容">{{content}}</textarea>
+        </div>
+        <div style="margin-top:10px;">
+            {{#if isPrivate}}
+                <label><input type="radio" name="isPrivate" value="true" checked>是</label>
+                <labe><input type="radio" name="isPrivate" value="false">否</labe>
+            {{else}}
+                <label><input type="radio" name="isPrivate" value="true">是</label>
+                <labe><input type="radio" name="isPrivate" value="false" checked>否</labe>
+            {{/if}}
+        </div>
+        <div style="margin-top:10px;">
+            <button action="submit" t="form">提交</button>
+            <a action="cancel">取消</a>
+        </div>
+    </form>
+
+</template>

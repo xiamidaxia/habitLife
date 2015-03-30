@@ -1,0 +1,77 @@
+@import '../util.import.less';
+* {
+    .box-sizing(border-box);
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent; // for some Androids
+}
+
+html, button, input, textarea, select {
+    outline: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    .font-family;
+    color: @color-full;
+    font-size: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    .font-l3;
+}
+
+h2 {
+    .font-m1;
+}
+
+h3 {
+    .font-m2;
+}
+
+h4 {
+    .font-m3;
+}
+
+h5 {
+    .font-s2;
+    color: @color-medium-rare;
+    text-transform: uppercase;
+}
+
+h6 {
+    color: @color-medium;
+}
+
+p {
+    .font-s3;
+}
+
+sub, sup {
+    font-size: .8em;
+}
+
+sub {
+    bottom: -.2em;
+}
+
+sup {
+    top: -.2em;
+}
+
+b {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+a {
+    outline: none !important;
+}

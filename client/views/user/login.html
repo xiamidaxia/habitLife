@@ -1,0 +1,9 @@
+<template name="userLogin">
+    <form n="form">
+        <input type="text" name="username" placeholder="您的用户名"><br>
+        <input type="password" name="password" placeholder="你的密码"><br>
+        <button action="submit" t="form">确定</button>
+        <p style="color:red">{{errReason}}</p>
+        <a href="{{pathFor 'userRegister'}}?goto={{gotoName}}">注册</a>
+    </form>
+</template>
