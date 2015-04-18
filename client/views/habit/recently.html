@@ -1,5 +1,12 @@
 <template name="habitRecently">
     {{#each habits}}
-        <li>{{name}}  <a href="{{pathFor "userDetail"}}">{{username}}</a> | <span>{{moment createAt "YYYY-MM-DD HH:MM:SS"}}</span></li>
+        <li>
+            <span>{{name}}</span>
+            |
+            <span>{{content}}</span>
+        |
+        <a href="{{pathFor "userDetail"}}">{{username}}</a>
+        |
+        <span>{{fromNow createAt}}</span></li>
     {{/each}}
 </template>

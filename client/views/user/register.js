@@ -10,9 +10,6 @@ Template.userRegister.actions({
     "submit": function(e, t) {
         var target = t.t(e)
         var username = target.find("[name=username]").val().trim()
-        if (username === "高杲杲") {
-            alert("傻叉, 高你妹啊。。。。。。。。。。。哈哈哈哈。。。。")
-        }
         NProgress.start()
         Accounts.createUser({
             username: username,

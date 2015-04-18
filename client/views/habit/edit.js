@@ -18,5 +18,8 @@ Template.habitEdit.actions({
             if (err)  throw err
             Router.go('habitIndex')
         })
+    },
+    "cancel": function() {
+        history.back()
     }
 })

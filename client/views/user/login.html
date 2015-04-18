@@ -1,9 +1,17 @@
 <template name="userLogin">
+    <h3>请先登录：</h3>
+    <div>-------------------------</div>
     <form n="form">
-        <input type="text" name="username" placeholder="您的用户名"><br>
-        <input type="password" name="password" placeholder="你的密码"><br>
-        <button action="submit" t="form">确定</button>
+        <div style="margin-top:10px;">
+            <input type="text" name="username" placeholder="您的用户名">
+        </div>
+        <div style="margin-top:10px;">
+            <input type="password" name="password" placeholder="你的密码">
+        </div>
+        <div style="margin-top:10px;">
+            <button action="submit" t="form">确定</button>
+            <a href="{{pathFor 'userRegister'}}?goto={{gotoName}}">没账户的在此注册啦</a>
+        </div>
         <p style="color:red">{{errReason}}</p>
-        <a href="{{pathFor 'userRegister'}}?goto={{gotoName}}">注册</a>
     </form>
 </template>

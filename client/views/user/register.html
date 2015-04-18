@@ -1,8 +1,16 @@
 <template name="userRegister">
+    <h3>请先注册：</h3>
+    <div>-------------------------</div>
     <form n="form">
-        <input type="text" name="username" placeholder="您的用户名"><br>
-        <input type="password" name="password" placeholder="您的密码"><br>
-        <button action="submit" t="form">确定</button>
+        <div style="margin-top:10px;">
+            <input type="text" name="username" placeholder="您的用户名">
+        </div>
+        <div style="margin-top:10px;">
+            <input type="password" name="password" placeholder="你的密码">
+        </div>
+        <div style="margin-top:10px;">
+            <button action="submit" t="form">确定</button>
+        </div>
         <p style="color:red">{{errReason}}</p>
     </form>
 </template>

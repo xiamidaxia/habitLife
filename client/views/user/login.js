@@ -18,7 +18,7 @@ Template.userLogin.actions({
         NProgress.start()
         Meteor.loginWithPassword(username, password, function(error) {
             NProgress.done()
-            if (error) {
+            if(error) {
                 console.log(error)
                 return errReason.set(error.reason || error.message)
             }
@@ -26,6 +26,5 @@ Template.userLogin.actions({
             Router.goto()
         })
     }
-
 
 })

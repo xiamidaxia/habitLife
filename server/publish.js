@@ -1,15 +1,3 @@
-/*Meteor.publish('publicLists', function() {
- return ListCollection.find({userId: {$exists: false}});
- });
-
- Meteor.publish('privateLists', function() {
- if (this.userId) {
- return ListCollection.find({userId: this.userId});
- } else {
- this.ready();
- }
- });*/
-
 Meteor.publish('Tag.mine', function() {
     if(this.userId)
         return Tag.find({userId: this.userId})
@@ -49,7 +37,7 @@ Meteor.publish('Habit.recently', function() {
     var habitCursor = Habit.find(
         //非自己，非私有
         {userId: {$ne: this.userId}, isPrivate: {$ne: true}},
-        {sort: {"createAt": -1}, limit: 10, fields: {isPrivate: 0}}
+        {sort: {"createAt": -1}, fields: {isPrivate: 0}}
     )
     return [
         habitCursor, Meteor.users.getUserCursor(habitCursor, "userId")
